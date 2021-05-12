@@ -34,7 +34,8 @@ public class CurrentAccountSpecification implements Specification<CurrentAccount
 
 		for (SearchCriteria criteria : searchCriterias) {
 			if (criteria.getValue() instanceof LocalDateTime) {
-				return create(root, criteria, builder);
+				predicates.add(create(root, criteria, builder));
+				continue;
 			}
 			if (criteria.getOperation().equals(SearchOperation.GREATER_THAN)) {
 				predicates.add(builder.greaterThan(root.get(criteria.getName()), criteria.getValue().toString()));

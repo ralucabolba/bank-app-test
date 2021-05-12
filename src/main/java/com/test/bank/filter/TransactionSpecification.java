@@ -48,7 +48,9 @@ public class TransactionSpecification implements Specification<Transaction> {
 			}
 			if (criteria.getValue() instanceof LocalDateTime) {
 				predicates.add(createDateTimePredicate(usedRoot, criteria, builder));
-			} else if (criteria.getOperation().equals(SearchOperation.GREATER_THAN)) {
+				continue;
+			} 
+			if (criteria.getOperation().equals(SearchOperation.GREATER_THAN)) {
 				predicates.add(builder.greaterThan(usedRoot.get(name), criteria.getValue().toString()));
 			} else if (criteria.getOperation().equals(SearchOperation.LESS_THAN)) {
 				predicates.add(builder.lessThan(usedRoot.get(name), criteria.getValue().toString()));
